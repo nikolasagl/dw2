@@ -1,5 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const path = require('path')
 const jogadorRouter = require('./src/routes/JogadorRoutes')
 
 const app = express()
@@ -24,7 +25,9 @@ const app = express()
     Gerar e Realizar Partidas
 */
 
-app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
+
+app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/jogador', jogadorRouter)
 
