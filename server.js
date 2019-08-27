@@ -9,8 +9,10 @@ const app = express()
     Campeonato Brasileiro
 
     Cadastro Jogadores
+    Cadastro Tecnicos
     Cadastro Times
     Cadastro Partidas
+    Cadastro Estádios
 
     Recursos:
     Tabela de Classificação Geral
