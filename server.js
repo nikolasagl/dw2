@@ -1,7 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const path = require('path')
-const jogadorRouter = require('./src/routes/JogadorRoutes')
+const routes = require('./src/routes')
+const expressLayouts = require('express-ejs-layouts')
 
 const app = express()
 
@@ -29,9 +29,11 @@ const app = express()
 
 app.use(bodyParser.urlencoded({ extended: false }))
 
-app.use(express.static(path.join(__dirname, 'public')))
+app.set('view engine', 'ejs');
+app.set('views', 'src/views');
+app.use(expressLayouts)
 
-app.use('/jogador', jogadorRouter)
+app.use('/', routes)
 
 app.listen(3000, () => {
     console.log('Server is running on port 3000')

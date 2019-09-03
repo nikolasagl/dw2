@@ -1,9 +1,13 @@
-const path = require('path')
-const rootDir = require('../config/rootDirectory')
+const JogadorModel = require('../models/JogadorModel')
 
 module.exports = {
-    index: async (req, res, next) => {        
-        return res.sendFile(path.join(rootDir, 'src', 'views', 'index.html'))
+    index: async (req, res, next) => {
+
+        const jogadores = await JogadorModel.getAll()
+
+        console.log(jogadores)
+
+        res.render('jogador/index')
     },
 
     create: async(req, res, next) => {
