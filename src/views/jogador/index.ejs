@@ -4,7 +4,32 @@
 
 <div class='container'>
 
-    <h1>AQUI OS JOGADORES</h1>
+    <table class="table">
+
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Time</th>
+                <th scope="col">Posição</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% if(jogadores) { %>
+
+                <% jogadores.forEach((jogador) => { %>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td><%= jogador.nome %></td>
+                        <td><%= jogador.time.nome %></td>
+                        <td><%= jogador.posicao.nome %></td>
+                    </tr>
+                <% }) %>
+            
+            <% } %>
+        </tbody>
+    </table>
 
 </div>
 

@@ -1,27 +1,44 @@
 const db = require('../config/database')
+const Time = require('./TimeModel')
+const Posicao = require('./PosicaoModel')
 
-const JogadorModel = {
+var JogadorModel = db.Model.extend({
+    tableName: 'jogadores',
 
-    getAll: async () => {
-
-        try {
-            
-            const jogadores = await db('jogadores')
-            
-            if (jogadores.length > 0)
-                return jogadores
-            else
-                return false
-            
-        } catch (error) {
-            console.log(error)
-            return false
-        }
+    time: function() {
+        return this.belongsTo(Time, 'time_id', 'id')
     },
 
-    insert: async (data) => {
-        return 'ausbdaisdbsak'
+    posicao: function() {
+        return this.hasOne(Posicao, 'id', 'posicao_id')
     }
-}
+})
 
 module.exports = JogadorModel
+
+
+// const JogadorModel = {
+
+//     getAll: async () => {
+
+//         try {
+            
+//             const jogadores = await db('jogadores')
+            
+//             if (jogadores.length > 0)
+//                 return jogadores
+//             else
+//                 return false
+            
+//         } catch (error) {
+//             console.log(error)
+//             return false
+//         }
+//     },
+
+//     insert: async (data) => {
+//         return 'ausbdaisdbsak'
+//     }
+// }
+
+// module.exports = JogadorModel

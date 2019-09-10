@@ -17,7 +17,7 @@ routes.get('/:id/edit', controllers.JogadorController.edit)
 
 routes.put('/:id', controllers.JogadorController.update)
 
-routes.delete('/:id', controllers.JogadorController.delete)
+routes.delete('/:id', controllers.JogadorController.del)
 
 routes.get('/:id/restore', controllers.JogadorController.restore)
 
