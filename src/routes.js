@@ -4,9 +4,8 @@ const router = express.Router()
 
 const routes = requireDir('./routes')
 
-// router.get('/', routes.ClassificacaoRoutes)
-router.get('/', routes.JogadorRoutes)
+router.all('/', routes.PedidoRoutes)
 
-router.get('/jogador', routes.JogadorRoutes)
+router.all('/admin', routes.AdminRoutes)
 
 module.exports = router
