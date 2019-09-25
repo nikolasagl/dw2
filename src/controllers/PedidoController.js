@@ -44,41 +44,46 @@ async function store(req, res, next) {
 
     const input = req.body
 
-    const pessoa = PessoaModel.forge({
-        nome: input.nome,
-        endereco: input.endereco,
-        numero: input.numero,
-        bairro: input.bairro,
-        telefone: input.telefone
-    })
-    const id = await pessoa.save(null, {method: 'insert'}).then((model) => {return model.id})
+    try {
+        const pessoa = PessoaModel.forge({
+            nome: input.nome,
+            endereco: input.endereco,
+            numero: input.numero,
+            bairro: input.bairro,
+            telefone: input.telefone
+        })
+        const id = await pessoa.save(null, {method: 'insert'}).then((model) => {return model.id})
+    
+        console.log(id)
+    
+        if (id !== null) {
+    
+            const data_pedido = moment().toDate()
+            const data_entrega = moment().toDate()
+    
+            console.log(data_pedido)
+            console.log(data_entrega)
+    
+            const pedido = await PedidoModel.forge({
+                bandeja_id: input.bandeja,
+                massa_id: input.massa,
+                sabor1_id: input.sabor1,
+                sabor2_id: input.sabor2,
+                cobertura_id: input.cobertura,
+                confeito_id: input.confeito,
+                pessoa_id: id,
+                data_pedido: data_pedido,
+                data_entrega: data_entrega,
+                status_id: 1,
+                preco: 100
+            }).save(null, {method: 'insert'}).then((model) => console.log(model))
+            
+            console.log(pedido)
+        }
 
-    console.log(id)
-
-    if (id !== null) {
-
-        const data_pedido = moment().toDate()
-        const data_entrega = moment().toDate()
-
-        console.log(data_pedido)
-        console.log(data_entrega)
-
-        const pedido = await PedidoModel.forge({
-            bandeja_id: input.bandeja,
-            massa_id: input.massa,
-            sabor1_id: input.sabor1,
-            sabor2_id: input.sabor2,
-            cobertura_id: input.cobertura,
-            confeito_id: input.confeito,
-            pessoa_id: id,
-            data_pedido: data_pedido,
-            data_entrega: data_entrega,
-            status_id: 1,
-            preco: 100
-        }).save(null, {method: 'insert'}).then((model) => console.log(model))
+    } catch (error) {
+        console.log(error)
     }
-
-    console.log(input)
 }
 
 async function show(req, res, next) {
