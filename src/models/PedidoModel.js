@@ -1,7 +1,7 @@
 const db = require('../config/database')
 const Pessoa = require('./PessoaModel')
 const Status = require('./StatusModel')
-const Bandeja = require('./BandejaModel')
+const Forma = require('./FormaModel')
 const Massa = require('./MassaModel')
 const Sabor = require('./SaborModel')
 const Cobertura = require('./CoberturaModel')
@@ -18,8 +18,8 @@ var PedidoModel = db.Model.extend({
         return this.hasOne(Status, 'id', 'status_id')
     },
 
-    bandeja: function() {
-        return this.hasOne(Bandeja, 'id', 'bandeja_id')
+    forma: function() {
+        return this.hasOne(Forma, 'id', 'forma_id')
     },
 
     massa: function() {

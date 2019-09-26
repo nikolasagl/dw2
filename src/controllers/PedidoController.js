@@ -1,7 +1,7 @@
 const { validationResult } = require('express-validator')
 const PedidoModel = require('../models/PedidoModel')
 const PessoaModel = require('../models/PessoaModel')
-const BandejaModel = require('../models/BandejaModel')
+const FormaModel = require('../models/FormaModel')
 const MassaModel = require('../models/MassaModel')
 const SaborModel = require('../models/SaborModel')
 const CoberturaModel = require('../models/CoberturaModel')
@@ -11,8 +11,8 @@ const moment = require('moment')
 async function index(req, res, next) {
 
     const data = {
-        bandejas: await BandejaModel.fetchAll().then((bandejas) => {
-            return bandejas.serialize()
+        formas: await FormaModel.fetchAll().then((formas) => {
+            return formas.serialize()
         }).catch(err => console.log(err)),
 
         massas: await MassaModel.fetchAll().then((massas) => {
@@ -47,9 +47,11 @@ async function store(req, res, next) {
     try {
         const pessoa = PessoaModel.forge({
             nome: input.nome,
+            email: input.email,
             endereco: input.endereco,
             numero: input.numero,
             bairro: input.bairro,
+            complemento: input.complemento,
             telefone: input.telefone
         })
         const id = await pessoa.save(null, {method: 'insert'}).then((model) => {return model.id})
@@ -59,23 +61,21 @@ async function store(req, res, next) {
         if (id !== null) {
     
             const data_pedido = moment().toDate()
-            const data_entrega = moment().toDate()
     
             console.log(data_pedido)
-            console.log(data_entrega)
     
             const pedido = await PedidoModel.forge({
-                bandeja_id: input.bandeja,
+                peso: input.peso,
+                forma_id: input.forma,
                 massa_id: input.massa,
-                sabor1_id: input.sabor1,
-                sabor2_id: input.sabor2,
+                sabor_id: input.sabor,
                 cobertura_id: input.cobertura,
                 confeito_id: input.confeito,
                 pessoa_id: id,
                 data_pedido: data_pedido,
-                data_entrega: data_entrega,
+                data_entrega: input.data_entrega,
                 status_id: 1,
-                preco: 100
+                preco: input.preco
             }).save(null, {method: 'insert'}).then((model) => console.log(model))
             
             console.log(pedido)

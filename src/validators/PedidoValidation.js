@@ -7,7 +7,7 @@ module.exports = {
         switch (method) {
             case 'store':
                 return [
-                    check('bandeja', 'O campo Bandeja é obrigatório.')
+                    check('forma', 'O campo Forma é obrigatório.')
                         .exists()
                         .not().isEmpty()
                         .isInt(),
@@ -17,12 +17,17 @@ module.exports = {
                         .not().isEmpty()
                         .isInt(),
 
-                    check('sabor1', 'O campo Sabor Primario é obrigatório.')
+                    check('sabor', 'O campo Sabor é obrigatório.')
                         .exists()
                         .not().isEmpty()
                         .isInt(),
 
-                    check('sabor2', 'O campo Sabor Secundario é obrigatório.')
+                    check('peso', 'O campo Peso é obrigatório.')
+                        .exists()
+                        .not().isEmpty()
+                        .isInt(),
+
+                    check('preco', 'O campo Preco é obrigatório.')
                         .exists()
                         .not().isEmpty()
                         .isInt(),
