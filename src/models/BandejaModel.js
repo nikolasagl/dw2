@@ -1,12 +1,12 @@
 const db = require('../config/database')
 const Pedido = require('./PedidoModel')
 
-var FormaModel = db.Model.extend({
-    tableName: 'forma',
+var BandejaModel = db.Model.extend({
+    tableName: 'bandeja',
 
     pedidos: () => {
         return this.belongsToMany(Pedido)
     },
 })
 
-module.exports = FormaModel
+module.exports = BandejaModel

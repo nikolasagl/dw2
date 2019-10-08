@@ -32,6 +32,11 @@ CREATE TABLE IF NOT EXISTS `dw2`.`bandeja` (
   UNIQUE INDEX `id_UNIQUE` (`id` ASC)
 )ENGINE = InnoDB;
 
+INSERT INTO `bandeja` (`id`, `nome`, `descricao`, `preco`) VALUES
+(1, 'Retangular', 'Bandeja Retangular 40cm x 20cm', 20.00),
+(2, 'Redonda', 'Bandeja Redonda diametro 30cm', 20.00),
+(3, 'Quadrada', 'Bandeja Quadrada 30cm x 30cm', 20.00);
+
 -- -----------------------------------------------------
 -- Table `dw2`.`massa`
 -- -----------------------------------------------------
@@ -45,6 +50,12 @@ CREATE TABLE IF NOT EXISTS `dw2`.`massa` (
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC)
 )ENGINE = InnoDB;
+
+INSERT INTO `massa` (`id`, `nome`, `descricao`, `preco`) VALUES
+(1, 'Chocolate', 'Massa de chocolate', 10.00),
+(2, 'Abacaxi', 'Massa de baunilha com abacaxi', 15.00),
+(3, 'Baunilha', 'Massa de baunilha', 9.00),
+(4, 'Morango', 'Massa de baunilha com morangos', 15.00);
 
 -- -----------------------------------------------------
 -- Table `dw2`.`sabor`
@@ -60,6 +71,12 @@ CREATE TABLE IF NOT EXISTS `dw2`.`sabor` (
   UNIQUE INDEX `id_UNIQUE` (`id` ASC)
 )ENGINE = InnoDB;
 
+INSERT INTO `sabor` (`id`, `nome`, `descricao`, `preco`) VALUES
+(1, 'Chocolate', 'Recheio ganache chocolate', 10.00),
+(2, 'Leite Ninho', 'Recheio de leite ninho', 10.00),
+(3, 'Morango', 'Recheio ganache chocolate branco ou preto com pedaços de morango', 13.00),
+(4, 'Abacaxi', 'Recheio ganache chocolate branco ou preto com pedaços de abacaxi', 13.00);
+
 -- -----------------------------------------------------
 -- Table `dw2`.`cobertura`
 -- -----------------------------------------------------
@@ -73,6 +90,12 @@ CREATE TABLE IF NOT EXISTS `dw2`.`cobertura` (
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC)
 )ENGINE = InnoDB;
+
+INSERT INTO `cobertura` (`id`, `nome`, `descricao`, `preco`) VALUES
+(1, 'Chocolate', 'Cobertura chocolate derretido', 10.00),
+(2, 'Morango', 'Cobertura geleia de morango', 15.00),
+(3, 'Brigadeiro', 'Cobertura de brigadeiro', 8.00),
+(4, 'Chantilly', 'Cobertura de chantilly', 13.00);
 
 -- -----------------------------------------------------
 -- Table `dw2`.`confeito`
@@ -88,6 +111,11 @@ CREATE TABLE IF NOT EXISTS `dw2`.`confeito` (
   UNIQUE INDEX `id_UNIQUE` (`id` ASC)
 )ENGINE = InnoDB;
 
+INSERT INTO `confeito` (`id`, `nome`, `descricao`, `preco`) VALUES
+(1, 'Granulado', 'Cobertura de granulado preto ou colorido', 10.00),
+(2, 'Crispy', 'Bolinhas de chocolate', 12.00),
+(3, 'Split', 'Raspas de chocolate', 14.00);
+
 -- -----------------------------------------------------
 -- Table `dw2`.`status`
 -- -----------------------------------------------------
@@ -100,6 +128,14 @@ CREATE TABLE IF NOT EXISTS `dw2`.`status` (
   UNIQUE INDEX `id_UNIQUE` (`id` ASC)
 )ENGINE = InnoDB;
 
+INSERT INTO `status` (`id`, `nome`) VALUES
+(1, 'Recebido'),
+(2, 'Em Produção'),
+(3, 'Concluido'),
+(4, 'Entregue'),
+(5, 'Finalizado'),
+(6, 'Cancelado');
+
 -- -----------------------------------------------------
 -- Table `dw2`.`pessoa`
 -- -----------------------------------------------------
@@ -108,6 +144,7 @@ DROP TABLE IF EXISTS `dw2`.`pessoa` ;
 CREATE TABLE IF NOT EXISTS `dw2`.`pessoa` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(100) NOT NULL,
+  `email` varchar(255) NOT NULL UNIQUE,
   `endereco` VARCHAR(255) NOT NULL,
   `numero` VARCHAR(10) NOT NULL,
   `bairro` VARCHAR(255) NOT NULL,
@@ -115,6 +152,10 @@ CREATE TABLE IF NOT EXISTS `dw2`.`pessoa` (
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC)
 )ENGINE = InnoDB;
+
+INSERT INTO `pessoa` (`id`, `nome`, `email`, `endereco`, `numero`, `bairro`, `complemento`, `telefone`) VALUES
+(10, 'teste1', 'teste@gmail.com', 'av maestro heitor de carvalho', '655', 'massaguaçu', NULL, '1298217333'),
+(11, 'teste2', 'teste2@gmail.com', 'av maestro heitor de carvalho', '656', 'massaguaçu', NULL, '1298217335');
 
 -- -----------------------------------------------------
 -- Table `dw2`.`pedido`
@@ -185,6 +226,10 @@ CREATE TABLE IF NOT EXISTS `dw2`.`pedido` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
 )ENGINE = InnoDB;
+
+INSERT INTO `pedido` (`id`, `preco`, `data_pedido`, `data_entrega`, `status_id`, `forma_id`, `massa_id`, `sabor_id`, `peso`, `cobertura_id`, `confeito_id`, `pessoa_id`) VALUES
+(3, '100', '2019-09-24 18:38:18.548', '2019-09-24 18:38:18.549', 1, 1, 1, 1, 1, 1, 1, 10),
+(4, '100', '2019-09-24 18:40:18.383', '2019-09-24 18:40:18.383', 1, 1, 1, 1, 2, 1, 1, 11);
 
 -- -----------------------------------------------------
 -- Table `dw2`.`admin`

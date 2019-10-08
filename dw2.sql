@@ -48,10 +48,10 @@ CREATE TABLE `admin` (
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `forma`
+-- Estrutura para tabela `bandeja`
 --
 
-CREATE TABLE `forma` (
+CREATE TABLE `bandeja` (
   `id` int(10) UNSIGNED NOT NULL,
   `nome` varchar(100) NOT NULL,
   `descricao` text NOT NULL,
@@ -59,13 +59,13 @@ CREATE TABLE `forma` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `forma`
+-- Despejando dados para a tabela `bandeja`
 --
 
-INSERT INTO `forma` (`id`, `nome`, `descricao`, `preco`) VALUES
-(1, 'Retangular', 'Forma Retangular 40cm x 20cm', 20.00),
-(2, 'Redonda', 'Forma Redonda diametro 30cm', 20.00),
-(3, 'Quadrada', 'Forma Quadrada 30cm x 30cm', 20.00);
+INSERT INTO `bandeja` (`id`, `nome`, `descricao`, `preco`) VALUES
+(1, 'Retangular', 'Bandeja Retangular 40cm x 20cm', 20.00),
+(2, 'Redonda', 'Bandeja Redonda diametro 30cm', 20.00),
+(3, 'Quadrada', 'Bandeja Quadrada 30cm x 30cm', 20.00);
 
 -- --------------------------------------------------------
 
@@ -147,7 +147,7 @@ CREATE TABLE `pedido` (
   `data_pedido` varchar(45) NOT NULL,
   `data_entrega` varchar(45) NOT NULL,
   `status_id` int(10) UNSIGNED NOT NULL,
-  `forma_id` int(10) UNSIGNED NOT NULL,
+  `bandeja_id` int(10) UNSIGNED NOT NULL,
   `massa_id` int(10) UNSIGNED NOT NULL,
   `sabor_id` int(10) UNSIGNED NOT NULL,
   `peso` int(10) NOT NULL,
@@ -160,7 +160,7 @@ CREATE TABLE `pedido` (
 -- Despejando dados para a tabela `pedido`
 --
 
-INSERT INTO `pedido` (`id`, `preco`, `data_pedido`, `data_entrega`, `status_id`, `forma_id`, `massa_id`, `sabor_id`, `peso`, `cobertura_id`, `confeito_id`, `pessoa_id`) VALUES
+INSERT INTO `pedido` (`id`, `preco`, `data_pedido`, `data_entrega`, `status_id`, `bandeja_id`, `massa_id`, `sabor_id`, `peso`, `cobertura_id`, `confeito_id`, `pessoa_id`) VALUES
 (3, '100', '2019-09-24 18:38:18.548', '2019-09-24 18:38:18.549', 1, 1, 1, 1, 1, 1, 1, 10),
 (4, '100', '2019-09-24 18:40:18.383', '2019-09-24 18:40:18.383', 1, 1, 1, 1, 2, 1, 1, 11);
 
@@ -247,9 +247,9 @@ ALTER TABLE `admin`
   ADD UNIQUE KEY `id_UNIQUE` (`id`);
 
 --
--- Índices de tabela `forma`
+-- Índices de tabela `bandeja`
 --
-ALTER TABLE `forma`
+ALTER TABLE `bandeja`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `id_UNIQUE` (`id`);
 
@@ -281,7 +281,7 @@ ALTER TABLE `pedido`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `id_UNIQUE` (`id`),
   ADD KEY `fk_pedido_status_idx` (`status_id`),
-  ADD KEY `fk_pedido_forma_idx` (`forma_id`),
+  ADD KEY `fk_pedido_bandeja_idx` (`bandeja_id`),
   ADD KEY `fk_pedido_massa_idx` (`massa_id`),
   ADD KEY `fk_pedido_sabor_idx` (`sabor_id`),
   ADD KEY `fk_pedido_cobertura_idx` (`cobertura_id`),
@@ -320,9 +320,9 @@ ALTER TABLE `admin`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de tabela `forma`
+-- AUTO_INCREMENT de tabela `bandeja`
 --
-ALTER TABLE `forma`
+ALTER TABLE `bandeja`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
@@ -375,7 +375,7 @@ ALTER TABLE `status`
 -- Restrições para tabelas `pedido`
 --
 ALTER TABLE `pedido`
-  ADD CONSTRAINT `fk_pedido_forma` FOREIGN KEY (`forma_id`) REFERENCES `forma` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_pedido_bandeja` FOREIGN KEY (`bandeja_id`) REFERENCES `bandeja` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_pedido_cobertura` FOREIGN KEY (`cobertura_id`) REFERENCES `cobertura` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_pedido_confeito` FOREIGN KEY (`confeito_id`) REFERENCES `confeito` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_pedido_massa` FOREIGN KEY (`massa_id`) REFERENCES `massa` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,

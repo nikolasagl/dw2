@@ -1,7 +1,7 @@
 const { validationResult } = require('express-validator')
 const PedidoModel = require('../models/PedidoModel')
 const PessoaModel = require('../models/PessoaModel')
-const FormaModel = require('../models/FormaModel')
+const BandejaModel = require('../models/BandejaModel')
 const MassaModel = require('../models/MassaModel')
 const SaborModel = require('../models/SaborModel')
 const CoberturaModel = require('../models/CoberturaModel')
@@ -11,8 +11,9 @@ const moment = require('moment')
 async function index(req, res, next) {
 
     const data = {
-        formas: await FormaModel.fetchAll().then((formas) => {
-            return formas.serialize()
+        bandejas: await BandejaModel.fetchAll().then((bandejas) => {
+            console.log(bandejas.serialize())
+            return bandejas.serialize()
         }).catch(err => console.log(err)),
 
         massas: await MassaModel.fetchAll().then((massas) => {
@@ -66,7 +67,7 @@ async function store(req, res, next) {
     
             const pedido = await PedidoModel.forge({
                 peso: input.peso,
-                forma_id: input.forma,
+                bandeja_id: input.bandeja,
                 massa_id: input.massa,
                 sabor_id: input.sabor,
                 cobertura_id: input.cobertura,

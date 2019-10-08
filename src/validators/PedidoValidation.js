@@ -7,7 +7,7 @@ module.exports = {
         switch (method) {
             case 'store':
                 return [
-                    check('forma', 'O campo Forma é obrigatório.')
+                    check('bandeja', 'O campo Bandeja é obrigatório.')
                         .exists()
                         .not().isEmpty()
                         .isInt(),
