@@ -4,8 +4,8 @@ const router = express.Router()
 
 const routes = requireDir('./routes')
 
-router.all('/admin', routes.AdminRoutes)
+router.use('/', routes.PedidoRoutes)
 
-router.all('/', routes.PedidoRoutes)
+router.use('/admin', routes.AdminRoutes)
 
 module.exports = router

@@ -41,6 +41,7 @@ USE `dw2` ;
 
 CREATE TABLE `admin` (
   `id` int(10) UNSIGNED NOT NULL,
+  `nome` varchar(255) NOT NULL,
   `login` varchar(255) NOT NULL,
   `senha` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -153,7 +154,10 @@ CREATE TABLE `pedido` (
   `peso` int(10) NOT NULL,
   `cobertura_id` int(10) UNSIGNED NOT NULL,
   `confeito_id` int(10) UNSIGNED NOT NULL,
-  `pessoa_id` int(10) UNSIGNED NOT NULL
+  `pessoa_id` int(10) UNSIGNED NOT NULL,
+  `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted_at` DATETIME NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -178,7 +182,10 @@ CREATE TABLE `pessoa` (
   `numero` varchar(10) NOT NULL,
   `bairro` varchar(255) NOT NULL,
   `complemento` varchar(255) DEFAULT NULL,
-  `telefone` varchar(12) NOT NULL
+  `telefone` varchar(12) NOT NULL,
+  `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted_at` DATETIME NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --

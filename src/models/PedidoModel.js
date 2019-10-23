@@ -26,12 +26,8 @@ var PedidoModel = db.Model.extend({
         return this.hasOne(Massa, 'id', 'massa_id')
     },
 
-    sabor1: function() {
-        return this.hasOne(Sabor, 'id', 'sabor1_id')
-    },
-
-    sabor2: function() {
-        return this.hasOne(Sabor, 'id', 'sabor2_id')
+    sabor: function() {
+        return this.hasOne(Sabor, 'id', 'sabor_id')
     },
 
     cobertura: function() {
