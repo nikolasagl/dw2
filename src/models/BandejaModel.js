@@ -5,8 +5,8 @@ var BandejaModel = db.Model.extend({
     tableName: 'bandeja',
 
     pedidos: () => {
-        return this.belongsToMany(Pedido)
-    },
+        return this.hasMany(Pedido, 'bandeja_id', 'id')
+    }
 })
 
 module.exports = BandejaModel

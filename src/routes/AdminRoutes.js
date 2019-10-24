@@ -20,4 +20,8 @@ routes.delete('/pedido/:id', AuthMiddleware, controllers.PedidoController.del)
 
 routes.get('/pedido/:id/restore', AuthMiddleware, controllers.PedidoController.restore)
 
+routes.post('/search', controllers.SearchController.search)
+
+routes.post('/find', controllers.SearchController.find)
+
 module.exports = routes

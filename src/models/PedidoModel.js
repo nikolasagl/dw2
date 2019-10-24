@@ -15,28 +15,28 @@ var PedidoModel = db.Model.extend({
     },
 
     status: function() {
-        return this.hasOne(Status, 'id', 'status_id')
+        return this.belongsTo(Status, 'status_id', 'id')
     },
 
     bandeja: function() {
-        return this.hasOne(Bandeja, 'id', 'bandeja_id')
+        return this.belongsTo(Bandeja, 'bandeja_id', 'id')
     },
 
     massa: function() {
-        return this.hasOne(Massa, 'id', 'massa_id')
+        return this.belongsTo(Massa, 'massa_id', 'id')
     },
 
     sabor: function() {
-        return this.hasOne(Sabor, 'id', 'sabor_id')
+        return this.belongsTo(Sabor, 'sabor_id', 'id')
     },
 
     cobertura: function() {
-        return this.hasOne(Cobertura, 'id', 'cobertura_id')
+        return this.belongsTo(Cobertura, 'cobertura_id', 'id')
     },
 
     confeito: function() {
-        return this.hasOne(Confeito, 'id', 'confeito_id')
-    },
+        return this.belongsTo(Confeito, 'confeito_id', 'id')
+    }
 
 })
 

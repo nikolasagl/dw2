@@ -5,8 +5,8 @@ var SaborModel = db.Model.extend({
     tableName: 'sabor',
 
     pedidos: () => {
-        return this.belongsToMany(Pedido)
-    },
+        return this.hasMany(Pedido, 'sabor_id', 'id')
+    }
 })
 
 module.exports = SaborModel

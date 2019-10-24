@@ -145,8 +145,8 @@ INSERT INTO `massa` (`id`, `nome`, `descricao`, `preco`) VALUES
 CREATE TABLE `pedido` (
   `id` int(10) UNSIGNED NOT NULL,
   `preco` varchar(45) NOT NULL,
-  `data_pedido` varchar(45) NOT NULL,
-  `data_entrega` varchar(45) NOT NULL,
+  `data_pedido` DATE NOT NULL,
+  `data_entrega` DATE NOT NULL,
   `status_id` int(10) UNSIGNED NOT NULL,
   `bandeja_id` int(10) UNSIGNED NOT NULL,
   `massa_id` int(10) UNSIGNED NOT NULL,

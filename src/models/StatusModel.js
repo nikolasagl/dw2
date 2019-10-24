@@ -5,8 +5,8 @@ var StatusModel = db.Model.extend({
     tableName: 'status',
 
     pedidos: () => {
-        return this.belongsToMany(Pedido)
-    },
+        return this.hasMany(Pedido, 'status_id', 'id')
+    }
 })
 
 module.exports = StatusModel

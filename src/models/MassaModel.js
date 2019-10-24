@@ -5,8 +5,8 @@ var MassaModel = db.Model.extend({
     tableName: 'massa',
 
     pedidos: () => {
-        return this.belongsToMany(Pedido)
-    },
+        return this.hasMany(Pedido, 'massa_id', 'id')
+    }
 })
 
 module.exports = MassaModel

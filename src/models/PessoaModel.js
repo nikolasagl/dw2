@@ -6,7 +6,7 @@ var PessoaModel = db.Model.extend({
 
     pedidos: () => {
         return this.hasMany(Pedido, 'pessoa_id', 'id')
-    },
+    }
 })
 
 module.exports = PessoaModel

@@ -57,13 +57,9 @@ async function store(req, res, next) {
         })
         const id = await pessoa.save(null, {method: 'insert'}).then((model) => {return model.id})
     
-        console.log(id)
-    
         if (id !== null) {
     
             const data_pedido = moment().toDate()
-    
-            console.log(data_pedido)
     
             const pedido = await PedidoModel.forge({
                 peso: input.peso,
@@ -79,7 +75,6 @@ async function store(req, res, next) {
                 preco: input.preco
             }).save(null, {method: 'insert'}).then((model) => console.log(model))
             
-            console.log(pedido)
         }
 
     } catch (error) {

@@ -5,8 +5,8 @@ var ConfeitoModel = db.Model.extend({
     tableName: 'confeito',
 
     pedidos: () => {
-        return this.belongsToMany(Pedido)
-    },
+        return this.hasMany(Pedido, 'confeito_id', 'id')
+    }
 })
 
 module.exports = ConfeitoModel
