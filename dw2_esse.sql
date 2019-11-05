@@ -42,7 +42,7 @@ USE `dw2` ;
 CREATE TABLE `admin` (
   `id` int(10) UNSIGNED NOT NULL,
   `email` varchar(255) NOT NULL,
-  `login` varchar(255) NOT NULL,
+  `nome` varchar(255) NOT NULL,
   `senha` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

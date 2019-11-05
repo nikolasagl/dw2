@@ -9,10 +9,10 @@ const PedidoModel = require('../models/PedidoModel')
 async function login(req, res) {
     const input = req.body
 
-    const user = await new AdminModel({login: input.username}).fetch()
+    const user = await new AdminModel({email: input.email}).fetch()
 
     if (user) {
-        bcrypt.compare(input.password, user.attributes.senha, (err, result) => {
+        bcrypt.compare(input.senha, user.attributes.senha, (err, result) => {
             if (err) {
                 res.json({
                     errors: [
@@ -23,7 +23,7 @@ async function login(req, res) {
                 
                 res.json({
                     email: user.attributes.email,
-                    name: user.attributes.login,
+                    nome: user.attributes.nome,
                     token: AutenticacaoHelper.gerarToken(user.attributes.id),
                     status: true
                 })
@@ -38,7 +38,7 @@ async function login(req, res) {
     } else {
         res.json({
             errors: [
-                {value: '', msg: 'Usuario não encontrado', param: 'username'}
+                {value: '', msg: 'Usuario não encontrado', param: 'email'}
             ]
         })  
     }
@@ -67,15 +67,15 @@ async function register(req, res) {
     try {
         const admin = AdminModel.forge({
             email: input.email,
-            login: input.username,
-            senha: bcrypt.hashSync(input.password, bcrypt.genSaltSync(10))
+            nome: input.nome,
+            senha: bcrypt.hashSync(input.senha, bcrypt.genSaltSync(10))
         })
 
         const id = await admin.save(null, {method: 'insert'}).then((model) => {return model.id})
 
         if (id) {
             res.json({
-                username: admin.attributes.login,
+                email: admin.attributes.email,
                 status: true
             })
         }
