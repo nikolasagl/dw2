@@ -79,6 +79,11 @@ async function store(req, res, next) {
 
     } catch (error) {
         console.log(error)
+        res.json({
+            errors: [
+                {value: '', msg: 'Alguma coisa deu errado', param: ''}
+            ]
+        })  
     }
 }
 
