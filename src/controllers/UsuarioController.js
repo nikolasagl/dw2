@@ -58,11 +58,14 @@ async function index(req, res) {
 async function register(req, res) {
 
     const erros = validationResult(req)
+    console.log(erros)
 
     if (!erros.isEmpty()) 
         return res.json({ errors: erros.errors })
 
     const input = req.body
+
+    console.log(input)
 
     try {
         const admin = AdminModel.forge({

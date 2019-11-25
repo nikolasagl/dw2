@@ -14,11 +14,11 @@ module.exports = {
                         .isEmail().withMessage('Digite um Email válido.')
                         .custom(async (value, {req}) => await AdminModel.query('where', 'email',  req.body.email).fetch().then(user => {if (user) return Promise.reject('Email já cadastrado')})),
 
-                    check('username', 'O campo Login é obrigatório.')
+                    check('nome', 'O campo Nome é obrigatório.')
                         .exists()
                         .not().isEmpty(),
 
-                    check('password', 'O campo Senha é obrigatório.')
+                    check('senha', 'O campo Senha é obrigatório.')
                         .exists()
                         .not().isEmpty()
                 ]
